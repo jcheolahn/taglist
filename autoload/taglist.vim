@@ -1211,6 +1211,13 @@ function! s:Tlist_Window_Create()
   " Preserve the alternate file
   exe 'silent! keepalt ' . win_dir . ' ' . win_size . 'split ' . wcmd
 
+  " Resize the taglist window
+  " It seems that 'topleft vertical' command doesn't work correctly
+  " if NERDTree window is already being executed on left side. As a
+  " result, the taglist window is opened with incorrect size. Here,
+  " resize the taglist window forcedly. 
+  exe 'silent! vertical resize ' . win_size
+
   " Save the new window position
   let s:tlist_winx = getwinposx()
   let s:tlist_winy = getwinposy()
